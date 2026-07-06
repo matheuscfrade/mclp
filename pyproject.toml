@@ -1,0 +1,92 @@
+[project]
+name = "mclp"
+version = "2.1.0"
+description = "MCLP - Maximum Covering Location Problem toolkit (FastAPI + React)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+  {name = "MCLP App Contributors"}
+]
+keywords = ["optimization", "location-problem", "MCLP", "RFEPCT", "education", "geospatial"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "pydantic>=2.0",
+  "pandas>=2.0",
+  "numpy>=1.26",
+  "scipy>=1.13",
+  "geopandas>=0.14",
+  "pyarrow>=15.0",
+  "shapely>=2.0",
+  "pulp>=2.8",
+  "openpyxl>=3.1",
+  "fpdf2>=2.7.6",           # Unicode-friendly PDF (replacement path for legacy fpdf)
+  "python-multipart>=0.0.9",
+  "rich>=13.0",           # kept for CLI/heuristics progress (optional in API)
+]
+
+[project.optional-dependencies]
+api = [
+  # Core runtime for the FastAPI service (no Streamlit)
+]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.5",
+  "httpx>=0.27",          # for FastAPI TestClient in tests
+]
+data = [
+  # For scripts/ensure_data.py and Google Drive downloads
+  "gdown>=5.2",
+]
+streamlit = [
+  # Legacy v1 support (if ever restored)
+  "streamlit>=1.35",
+  "plotly>=5.22",
+  "pydeck>=0.9",
+  "matplotlib>=3.8",
+  "gdown>=5.2",
+]
+full = [
+  "mclp[dev,streamlit,data]",
+]
+
+[project.urls]
+Homepage = "https://github.com/matheuscfrade/mclp"
+Repository = "https://github.com/matheuscfrade/mclp"
+Issues = "https://github.com/matheuscfrade/mclp/issues"
+
+[tool.setuptools]
+packages = ["api", "core"]   # explicit flat packages (heuristics.py + config.py + data_loader.py treated as top-level modules)
+py-modules = ["config", "data_loader", "heuristics"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.txt"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "B008"]  # allow long lines in some places, FastAPI Depends etc.
+
+[tool.ruff.lint.isort]
+known-first-party = ["core", "api"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+# Future: can add [project.scripts] for mclp-api, mclp-ensure-data etc.

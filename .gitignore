@@ -1,0 +1,105 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Testing / coverage
+.coverage
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Ruff / linters
+.ruff_cache/
+
+# Node / frontend
+web/node_modules/
+web/.vite/
+web/dist/
+
+# External node_modules (per dev.ps1 / build.ps1 convention)
+# Installed outside the project tree to avoid issues with OneDrive / synced folders
+**/.mclp-web/
+
+# Runtime / uploads / generated
+runtime_uploads/
+*.log
+*.err
+*.tmp
+*.bak
+
+# Local debug / review artifacts
+debug_*.pdf
+test_*.pdf
+web/ui-preview/
+web/debug-*.png
+web/ui-review-*.png
+
+# IDE / agent tooling (not part of the app)
+mcps/
+terminals/
+
+# Data (large files — keep only intentionally committed samples if any)
+# clean_data/ is intentionally committed for this repo; do not ignore
+# If you ever want to ignore heavy parquets locally, use a personal .git/info/exclude
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Windows PowerShell / env
+$RECYCLE.BIN/
+*.ps1.swp
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pyright
+pyrightconfig.json
+
+# Local pip editable markers (rare)
+pip-selfcheck.json
+
+# Local AI/tooling config (do not commit)
+.grok/
+.antigravitycli/

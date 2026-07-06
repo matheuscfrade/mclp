@@ -1,0 +1,17 @@
+streamlit
+pandas
+geopandas
+pydeck
+plotly
+numpy
+openpyxl
+fpdf2
+pyarrow
+matplotlib
+rich
+gdown
+scipy
+fastapi
+uvicorn
+pulp
+python-multipart
