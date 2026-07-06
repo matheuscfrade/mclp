@@ -1,5 +1,7 @@
 # MCLP
 
+[![GitHub](https://img.shields.io/badge/GitHub-matheuscfrade/mclp-blue?logo=github)](https://github.com/matheuscfrade/mclp)
+
 **Maximum Covering Location Problem** — ferramenta para resolver problemas de máxima cobertura (MCLP). Inclui suporte ao cenário da Rede Federal de Educação Profissional, Científica e Tecnológica (RFEPCT) como modelo de dados.
 
 | Componente | Versão |
