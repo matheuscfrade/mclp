@@ -67,6 +67,7 @@ def ensure_file_from_drive(filepath):
     
     _log(f"Baixando {filename} do Google Drive...")
     try:
+        import gdown
         gdown.download(url, output, quiet=False)
         # Verifica se baixou algo válido
         if path.exists() and path.stat().st_size > 1000:
@@ -173,8 +174,10 @@ def load_distances(filepath, uf_filter=None):
 
         # Renomear colunas se necessário (suporte legado)
         rename_map = {}
-        if 'origem_cod' in df.columns: rename_map['origem_cod'] = 'origem'
-        if 'destino_cod' in df.columns: rename_map['destino_cod'] = 'destino'
+        if 'origem_cod' in df.columns:
+            rename_map['origem_cod'] = 'origem'
+        if 'destino_cod' in df.columns:
+            rename_map['destino_cod'] = 'destino'
         
         if rename_map:
             df = df.rename(columns=rename_map)
@@ -275,7 +278,8 @@ def load_existing_sites(filepath, uf_filter=None):
     # Handle Streamlit UploadedFile
     if hasattr(filepath, 'name'):
         filename = filepath.name
-        if hasattr(filepath, 'seek'): filepath.seek(0)
+        if hasattr(filepath, 'seek'):
+            filepath.seek(0)
     else:
         if not check_and_debug_path(filepath):
             return pd.DataFrame(columns=['id', 'possui_campus'])
@@ -292,7 +296,8 @@ def load_existing_sites(filepath, uf_filter=None):
         try:
             df = pd.read_csv(filepath, sep=';', encoding='utf-8')
         except UnicodeDecodeError:
-            if hasattr(filepath, 'seek'): filepath.seek(0)
+            if hasattr(filepath, 'seek'):
+                filepath.seek(0)
             df = pd.read_csv(filepath, sep=';', encoding='latin1')
     
     # Padronizar coluna ID
@@ -359,8 +364,9 @@ def load_demand(filepath, id_col, value_cols, uf_filter=None):
         try:
             df = pd.read_csv(filepath, sep=None, engine='python', encoding='utf-8')
         except UnicodeDecodeError:
-             if hasattr(filepath, 'seek'): filepath.seek(0)
-             df = pd.read_csv(filepath, sep=None, engine='python', encoding='latin1')
+            if hasattr(filepath, 'seek'):
+                filepath.seek(0)
+            df = pd.read_csv(filepath, sep=None, engine='python', encoding='latin1')
     
     # Auto-detectar coluna ID se não encontrada
     if id_col not in df.columns:
@@ -448,7 +454,8 @@ def load_coordinates(filepath, uf_filter=None):  # legacy Streamlit cache remove
         # Lidar com Streamlit UploadedFile
         if hasattr(filepath, 'name'):
             filename = filepath.name
-            if hasattr(filepath, 'seek'): filepath.seek(0)
+            if hasattr(filepath, 'seek'):
+                filepath.seek(0)
         else:
             if not check_and_debug_path(filepath):
                 return {}
@@ -466,7 +473,8 @@ def load_coordinates(filepath, uf_filter=None):  # legacy Streamlit cache remove
             try:
                 df = pd.read_csv(filepath, encoding='utf-8')
             except UnicodeDecodeError:
-                if hasattr(filepath, 'seek'): filepath.seek(0)
+                if hasattr(filepath, 'seek'):
+                    filepath.seek(0)
                 df = pd.read_csv(filepath, encoding='latin1')
         
         # Padronizar colunas

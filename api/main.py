@@ -4,8 +4,8 @@ import io
 import json
 import sys
 import uuid
-from pathlib import Path
 from dataclasses import asdict
+from pathlib import Path
 from typing import Any
 
 for stream in (sys.stdout, sys.stderr):
@@ -22,7 +22,6 @@ from core.files import demand_template_bytes, existing_sites_template_bytes, pre
 
 from .jobs import store
 from .schemas import RunCreatePayload, RunCreateResponse
-
 
 app = FastAPI(title="MCLP API", version="1.0.0")
 

@@ -8,7 +8,6 @@ import pandas as pd
 
 import config as local_config
 
-
 ID_CANDIDATES = ["id", "ID", "Id", "Cód.", "Cod.", "Código", "Codigo", "Code"]
 
 

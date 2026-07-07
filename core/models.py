@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
-from typing import Any, Callable, Literal
-
+from collections.abc import Callable
+from dataclasses import asdict, dataclass, field
+from typing import Any, Literal
 
 Metric = Literal["distance", "time"]
 ExecutionMode = Literal["sequential", "independent"]

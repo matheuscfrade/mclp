@@ -246,7 +246,7 @@ def solution_map_payload(instance: MCLPInstance, selected_sites: list[int]) -> M
         if shapefile.crs and shapefile.crs != "EPSG:4326":
             shapefile = shapefile.to_crs("EPSG:4326")
         for row in shapefile.itertuples(index=False):
-            municipio_id = int(getattr(row, "id"))
+            municipio_id = int(row.id)
             if municipio_id not in status_dict:
                 continue
             areas.append(

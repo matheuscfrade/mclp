@@ -1,12 +1,11 @@
-import time
-import random
 import io
+import random
+import time
+
 import numpy as np
-from scipy.sparse import csr_matrix, coo_matrix
-from itertools import combinations
-from collections import defaultdict
 from rich.console import Console
-from rich.progress import track, Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
+from rich.progress import BarColumn, Progress, SpinnerColumn, TaskProgressColumn, TextColumn
+from scipy.sparse import coo_matrix
 
 console = Console(file=io.StringIO(), force_terminal=False, no_color=True)
 

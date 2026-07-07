@@ -6,11 +6,14 @@ from dataclasses import asdict
 from html import escape
 
 import pandas as pd
+
+from .models import RunResult
+
 # fpdf2 is published on PyPI as 'fpdf2' but imports as 'fpdf'.
 # The legacy 'fpdf' package (<2.x) can produce broken PDFs with accented text.
 try:
-    from fpdf import FPDF as _FPDF
     import fpdf as _fpdf_pkg
+    from fpdf import FPDF as _FPDF
 except ImportError:
     _FPDF = None
     _fpdf_pkg = None
@@ -25,8 +28,6 @@ if FPDF is not None and _fpdf_pkg is not None:
         major = 0
     if major < 2:
         FPDF = None
-
-from .models import RunResult
 
 
 def results_dataframe(run: RunResult) -> pd.DataFrame:
@@ -162,7 +163,7 @@ def to_pdf_bytes(run: RunResult) -> bytes:
     widths = _pdf_table_widths(pdf, [32, 28, 32, 30, 30, 30])
     headers = ["Metodo", "Status", "Z", "Cob. %", "Nova Dem.", "Tempo"]
     pdf.set_x(pdf.l_margin)
-    for header, width in zip(headers, widths):
+    for header, width in zip(headers, widths, strict=False):
         pdf.cell(width, 7, _safe_pdf_text(header), border=1)
     pdf.ln()
 
@@ -177,7 +178,7 @@ def to_pdf_bytes(run: RunResult) -> bytes:
             f"{result.runtime_seconds:.2f}".replace(".", ","),
         ]
         pdf.set_x(pdf.l_margin)
-        for value, width in zip(values, widths):
+        for value, width in zip(values, widths, strict=False):
             pdf.cell(width, 7, str(value)[:24], border=1)
         pdf.ln()
 

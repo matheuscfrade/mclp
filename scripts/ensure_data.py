@@ -66,7 +66,7 @@ def main() -> int:
     success_count = 0
     failed: list[str] = []
 
-    for filename, file_id in GDRIVE_FILE_IDS.items():
+    for filename, _file_id in GDRIVE_FILE_IDS.items():
         filepath = data_dir / filename
 
         if args.check_only:
